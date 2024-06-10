@@ -1,6 +1,6 @@
-package org.ej31.case1.mapper;
+package org.ej31.case1_jdbctemplate.mapper;
 
-import org.ej31.case1.model.User;
+import org.ej31.case1_jdbctemplate.model.User;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

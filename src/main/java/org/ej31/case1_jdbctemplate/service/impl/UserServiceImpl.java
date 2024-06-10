@@ -1,8 +1,8 @@
-package org.ej31.case1.service.impl;
+package org.ej31.case1_jdbctemplate.service.impl;
 
-import org.ej31.case1.model.User;
-import org.ej31.case1.repository.UserRepository;
-import org.ej31.case1.service.UserService;
+import org.ej31.case1_jdbctemplate.model.User;
+import org.ej31.case1_jdbctemplate.repository.UserRepository;
+import org.ej31.case1_jdbctemplate.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

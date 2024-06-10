@@ -1,9 +1,9 @@
-package org.ej31.case2.controller;
+package org.ej31.case2_scope.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.ej31.case2.services.PrototypeScopeService;
-import org.ej31.case2.services.SessionScopeService;
+import org.ej31.case2_scope.services.PrototypeScopeService;
+import org.ej31.case2_scope.services.SessionScopeService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

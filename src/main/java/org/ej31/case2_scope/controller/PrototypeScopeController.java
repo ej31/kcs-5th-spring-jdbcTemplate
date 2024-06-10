@@ -1,7 +1,6 @@
-package org.ej31.case2.controller;
+package org.ej31.case2_scope.controller;
 
-import org.ej31.case2.services.PrototypeScopeService;
-import org.ej31.case2.services.SingletonScopeService;
+import org.ej31.case2_scope.services.PrototypeScopeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,17 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
  * - 프로토타입 빈을 사용하는 코드가 수동으로 소멸 작업을 처리해야 합니다.
  */
 @RestController
-@RequestMapping("/scope/singleton")
-public class SingletonScopeController {
-    private final SingletonScopeService singletonScopeService;
+@RequestMapping("/scope/prototype")
+public class PrototypeScopeController {
+    private final PrototypeScopeService prototypeScopeService;
 
-    public SingletonScopeController(SingletonScopeService singletonScopeService) {
-        this.singletonScopeService = singletonScopeService;
+    public PrototypeScopeController(PrototypeScopeService prototypeScopeService) {
+        this.prototypeScopeService = prototypeScopeService;
     }
 
     @GetMapping
     public String getSession() {
-        singletonScopeService.getSome();
+        prototypeScopeService.getSome();
         return "조회 완료! ";
     }
 }

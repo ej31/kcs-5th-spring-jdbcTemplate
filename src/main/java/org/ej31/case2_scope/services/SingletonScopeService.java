@@ -1,4 +1,4 @@
-package org.ej31.case2.services;
+package org.ej31.case2_scope.services;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;

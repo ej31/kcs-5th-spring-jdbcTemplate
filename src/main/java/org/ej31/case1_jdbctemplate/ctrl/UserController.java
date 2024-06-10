@@ -1,7 +1,7 @@
-package org.ej31.case1.ctrl;
+package org.ej31.case1_jdbctemplate.ctrl;
 
-import org.ej31.case1.model.User;
-import org.ej31.case1.service.UserService;
+import org.ej31.case1_jdbctemplate.model.User;
+import org.ej31.case1_jdbctemplate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

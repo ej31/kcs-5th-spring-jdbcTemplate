@@ -1,7 +1,7 @@
-package org.ej31.case1.repository;
+package org.ej31.case1_jdbctemplate.repository;
 
-import org.ej31.case1.mapper.UserRowMapper;
-import org.ej31.case1.model.User;
+import org.ej31.case1_jdbctemplate.mapper.UserRowMapper;
+import org.ej31.case1_jdbctemplate.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

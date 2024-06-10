@@ -1,6 +1,6 @@
-package org.ej31.case1.service;
+package org.ej31.case1_jdbctemplate.service;
 
-import org.ej31.case1.model.User;
+import org.ej31.case1_jdbctemplate.model.User;
 
 import java.util.List;
 
