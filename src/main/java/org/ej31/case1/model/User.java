@@ -1,4 +1,4 @@
-package org.ej31.model;
+package org.ej31.case1.model;
 
 import lombok.Getter;
 import lombok.Setter;

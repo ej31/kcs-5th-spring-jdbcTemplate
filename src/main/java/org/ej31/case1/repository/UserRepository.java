@@ -1,6 +1,6 @@
-package org.ej31.repository;
+package org.ej31.case1.repository;
 
-import org.ej31.model.User;
+import org.ej31.case1.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

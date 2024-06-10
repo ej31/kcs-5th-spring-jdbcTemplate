@@ -1,4 +1,4 @@
-package org.ej31.config;
+package org.ej31.case1.config;
 
 import org.springframework.context.annotation.Configuration;
 
