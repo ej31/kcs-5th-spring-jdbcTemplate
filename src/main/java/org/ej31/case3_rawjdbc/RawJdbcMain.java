@@ -1,72 +1,54 @@
 package org.ej31.case3_rawjdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import org.ej31.case3_rawjdbc.models.Department;
+import org.ej31.case3_rawjdbc.models.User;
+
 import java.sql.SQLException;
+import java.util.List;
+
 
 public class RawJdbcMain {
     public static void main(String[] args) {
-        // 데이터베이스 연결 정보
-        String url = "jdbc:mysql://localhost:3306/jeff_db";
-        String user = "jeff";
-        String password = "123123..";
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+        UserDAO userDAO = new UserDAO();
 
         try {
-            // 데이터베이스 연결
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("데이터베이스에 연결되었습니다.");
-
             // 데이터 삽입 예제
-            String insertSql = "INSERT INTO users (name, email) VALUES (?, ?)";
-            preparedStatement = connection.prepareStatement(insertSql);
-            preparedStatement.setString(1, "홍길동");
-            preparedStatement.setString(2, "hong@example.com");
-            preparedStatement.executeUpdate();
+            User newUser = new User("홍길동", "hong@example.com");
+            userDAO.insertUser(newUser);
             System.out.println("데이터가 삽입되었습니다.");
 
             // 데이터 조회 예제
-            String selectSql = "SELECT * FROM users";
-            preparedStatement = connection.prepareStatement(selectSql);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                System.out.println("ID: " + id + ", 이름: " + name + ", 이메일: " + email);
+            List<User> users = userDAO.getUsers();
+            for (User user : users) {
+                System.out.println("ID: " + user.getId() + ", 이름: " + user.getName() + ", 이메일: " + user.getEmail());
+
+                // 시연을 위해 작성한 임시 로직 -> 마지막 유저를 받는다.
+                newUser.setEmail(user.getEmail());
+                newUser.setName(user.getName());
+                newUser.setId(user.getId());
             }
 
+            User userById = userDAO.getUserById(newUser.getId()); // 실제로는 request 를 통해 유저에게서 아이디를 받는다.
+            System.out.println("ID: " + userById.getId() + ", 이름: " + userById.getName() + ", 이메일: " + userById.getEmail());
+
             // 데이터 수정 예제
-            String updateSql = "UPDATE users SET email = ? WHERE name = ?";
-            preparedStatement = connection.prepareStatement(updateSql);
-            preparedStatement.setString(1, "hong_gil_dong@example.com");
-            preparedStatement.setString(2, "홍길동");
-            preparedStatement.executeUpdate();
+            userById.setEmail("hong_gil_dong@example.com");
+            userDAO.updateUserEmail(userById);
             System.out.println("데이터가 수정되었습니다.");
 
             // 데이터 삭제 예제
-            String deleteSql = "DELETE FROM users WHERE name = ?";
-            preparedStatement = connection.prepareStatement(deleteSql);
-            preparedStatement.setString(1, "홍길동");
-            preparedStatement.executeUpdate();
-            System.out.println("데이터가 삭제되었습니다.");
+            // userDAO.deleteUser(newUser);
+            // System.out.println("데이터가 삭제되었습니다.");
+
+            User userWithDepartment = new User("홍길동", "hong@example.com", new Department("개발팀"));
+            userDAO.insertUserWithDepartment(userWithDepartment);
+            System.out.println(userWithDepartment.getDepartment().getDepartmentName());
+
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            // 리소스 해제
-            try {
-                if (resultSet != null) resultSet.close();
-                if (preparedStatement != null) preparedStatement.close();
-                if (connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

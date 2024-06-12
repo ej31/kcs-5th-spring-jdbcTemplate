@@ -41,7 +41,7 @@ public class SessionScopeController {
             return "세션이 존재하지 않습니다.";
         }
         session.invalidate(); // 세션 무효화
-        System.out.println(this.sessionScopeService.getSome());
+//        System.out.println(this.sessionScopeService.getSome());
         return "세션 무효화 완료.";
     }
 }

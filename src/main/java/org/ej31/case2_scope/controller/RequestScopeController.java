@@ -18,7 +18,7 @@ public class RequestScopeController {
     }
 
     @GetMapping
-    public String getSession() {
+    public String getRequest() {
         requestScopeService.getSome();
         prototypeScopeService.getSome();
         return "조회 완료! ";
